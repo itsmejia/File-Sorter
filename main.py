@@ -52,10 +52,10 @@ def set_up():
     data["has-set-up"] = True
     print("Great! You are all done!")
 
-    with open("config.json", "w") as config_file:
+    with open("config.json.gitignore", "w") as config_file:
         json.dump(data, config_file, indent=4)
 
-with open("config.json", "r") as config_file:
+with open("config.json.gitignore", "r") as config_file:
     data = json.load(config_file)
     if not data["has-set-up"]:
         set_up()
