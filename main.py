@@ -65,7 +65,6 @@ path = data["source-directory"]
 file_name = os.listdir(path) # names all the files in that path
 
 folder_names = list(data["rules"].values())
-print(folder_names)
 
 # creates the folders if they don't exist
 for loop in range(len(folder_names)):
