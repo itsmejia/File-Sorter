@@ -7,19 +7,23 @@ json_string = '''
             "destination-directory": "",
             "rules": {
             },
-            "ignore-files": [],
-            "group-numbered-files": true
+            "ignore-files": []
         }
 '''
 
 data = json.loads(json_string)
 
+def format_path(file_path):
+    file_path = file_path.replace("\\", "/").replace('"', "")
+    return file_path
+
+
 def set_up():
     print("Welcome to File Sorter! Lets get you set up.")
     print("What folder would you like to sort? (ex: C:/Users/name/Documents/)")
-    input_src_path = input()
+    input_src_path = format_path(input())
     print("Where would you like to have the files sorted to? (ex: C:/Users/name/Documents/Organized Files/)")
-    input_sort_path = input()
+    input_sort_path = format_path(input())
     data["source-directory"] = input_src_path
     data["destination-directory"] = input_sort_path
     print("Great! The main part has been set up. Lets move on to the small details.")
@@ -62,16 +66,19 @@ with open("config.json.gitignore", "r") as config_file:
 
 
 def organize():
-    path = data["source-directory"]
+    with open("config.json.gitignore", "r") as config_file:
+        data = json.load(config_file)
+    srcpath = data["source-directory"]
+    destpath = data["destination-directory"]
 
-    file_name = os.listdir(path) # names all the files in that path
+    file_name = os.listdir(srcpath) # names all the files in that path
 
     folder_names = list(data["rules"].values())
 
     # creates the folders if they don't exist
     for loop in range(len(folder_names)):
-        if not os.path.exists(path + "/" + folder_names[loop]):
-            os.makedirs((path + "/" + folder_names[loop]))
+        if not os.path.exists(destpath + "/" + folder_names[loop]):
+            os.makedirs((destpath + "/" + folder_names[loop]))
             print("Created folder: " + folder_names[loop])
 
     # moves the files into correct folders
@@ -79,8 +86,8 @@ def organize():
         for rule in data["rules"]:
             if rule in file and file not in data["ignore-files"]:
                 folder_name = data["rules"][rule]
-                if not os.path.exists(path + "/" + folder_name + "/" + file):
-                    shutil.move(path + "/" + file, path + "/" + folder_name + "/" + file)
+                if not os.path.exists(destpath + "/" + folder_name + "/" + file):
+                    shutil.move(srcpath + "/" + file, destpath + "/" + folder_name + "/" + file)
                 else:
                     print("File already exists in destination folder.")
 

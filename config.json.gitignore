@@ -1,13 +1,14 @@
 {
     "has-set-up": true,
     "source-directory": "C:/Users/nneka/Downloads",
-    "destination-directory": "C:/Users/nneka/Downloads",
+    "destination-directory": "C:/Users/nneka/Downloads/Organizationnn",
     "rules": {
         ".png": "Images",
         ".jpg": "Images",
         ".zip": "Things to Extract",
         "organize": ""
     },
-    "ignore-files": [],
-    "group-numbered-files": true
+    "ignore-files": [
+        "be36bd6614f01051aa5ad730191341a2.jpg"
+    ]
 }
