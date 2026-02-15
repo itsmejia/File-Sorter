@@ -1,0 +1,13 @@
+{
+    "has-set-up": true,
+    "source-directory": "C:/Users/nneka/Downloads",
+    "destination-directory": "C:/Users/nneka/Downloads",
+    "rules": {
+        ".png": "Images",
+        ".jpg": "Images",
+        ".zip": "Things to Extract",
+        "organize": ""
+    },
+    "ignore-files": [],
+    "group-numbered-files": true
+}
